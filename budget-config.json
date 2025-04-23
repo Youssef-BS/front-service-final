@@ -1,0 +1,26 @@
+{
+  "projects": {
+    "microFront": {
+      "architect": {
+        "build": {
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "8kb",
+                  "maximumError": "16kb"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+} 

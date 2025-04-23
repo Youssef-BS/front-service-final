@@ -1,0 +1,203 @@
+<div class="home-container raduis">
+    <!-- Hero Section -->
+    <section class="hero-section bg-primary text-white py-5 raduis">
+      <div class="container py-5">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-4">Bienvenue sur CampusManager</h1>
+            <p class="lead mb-4">La solution complète pour gérer vos résidences universitaires, blocs et foyers en toute simplicité.</p>
+            <div class="d-flex gap-3">
+              <a [routerLink]="['/reservations']" (click)="navigateToPage($event, 'reservations')" class="btn btn-light btn-lg px-4">
+                <i class="bi bi-calendar-check me-2"></i>Voir les réservations
+              </a>
+              <a [routerLink]="['/bloc']" (click)="navigateToPage($event, 'bloc')" class="btn btn-outline-light btn-lg px-4">
+                <i class="bi bi-building me-2"></i>Gérer les blocs
+              </a>
+              <a [routerLink]="['/chambre']" (click)="navigateToPage($event, 'chambre')" class="btn btn-warning btn-lg px-4">
+                <i class="fas fa-bed me-2"></i>Gérer les chambres
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-block">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                 alt="Campus university" class="img-fluid rounded-3 shadow">
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Stats Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body text-center py-4">
+                <h2 class="text-primary mb-0">{{ totalUniversities || 0 }}</h2>
+                <p class="text-muted mb-0">Universités</p>
+                <i class="bi bi-bank fs-1 text-primary mt-3 opacity-25"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body text-center py-4">
+                <h2 class="text-success mb-0">{{ totalFoyers || 0 }}</h2>
+                <p class="text-muted mb-0">Foyers</p>
+                <i class="bi bi-house-heart fs-1 text-success mt-3 opacity-25"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body text-center py-4">
+                <h2 class="text-info mb-0">{{ totalBlocs || 0 }}</h2>
+                <p class="text-muted mb-0">Blocs</p>
+                <i class="bi bi-building fs-1 text-info mt-3 opacity-25"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body text-center py-4">
+                <h2 class="text-warning mb-0">{{ totalChambres || 0 }}</h2>
+                <p class="text-muted mb-0">Chambres</p>
+                <i class="fas fa-bed fs-1 text-warning mt-3 opacity-25"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body text-center py-4">
+                <h2 class="text-danger mb-0">{{ totalReservations || 0 }}</h2>
+                <p class="text-muted mb-0">Réservations</p>
+                <i class="bi bi-calendar-check fs-1 text-danger mt-3 opacity-25"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Quick Actions Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Accès rapide</h2>
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm transition-all hover-shadow">
+              <div class="card-body text-center py-4">
+                <div class="icon-wrapper bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto">
+                  <i class="bi bi-building fs-3"></i>
+                </div>
+                <h5 class="card-title">Gestion des Blocs</h5>
+                <p class="card-text text-muted">Ajoutez, modifiez ou supprimez des blocs universitaires</p>
+                <a [routerLink]="['/bloc']" (click)="navigateToPage($event, 'bloc')" class="btn btn-outline-primary stretched-link">Accéder</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm transition-all hover-shadow">
+              <div class="card-body text-center py-4">
+                <div class="icon-wrapper bg-warning bg-opacity-10 text-warning rounded-circle p-3 mb-3 mx-auto">
+                  <i class="fas fa-bed fs-3"></i>
+                </div>
+                <h5 class="card-title">Gestion des Chambres</h5>
+                <p class="card-text text-muted">Gérez les chambres avec leurs prix et caractéristiques</p>
+                <a [routerLink]="['/chambre']" (click)="navigateToPage($event, 'chambre')" class="btn btn-outline-warning stretched-link">Accéder</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm transition-all hover-shadow">
+              <div class="card-body text-center py-4">
+                <div class="icon-wrapper bg-info bg-opacity-10 text-info rounded-circle p-3 mb-3 mx-auto">
+                  <i class="fas fa-map-marker-alt fs-3"></i>
+                </div>
+                <h5 class="card-title">Carte des Chambres</h5>
+                <p class="card-text text-muted">Visualisez l'emplacement des chambres sur une carte interactive</p>
+                <a [routerLink]="['/chambre-map']" (click)="navigateToPage($event, 'chambre-map')" class="btn btn-outline-info stretched-link">Accéder</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm transition-all hover-shadow">
+              <div class="card-body text-center py-4">
+                <div class="icon-wrapper bg-success bg-opacity-10 text-success rounded-circle p-3 mb-3 mx-auto">
+                  <i class="bi bi-house-heart fs-3"></i>
+                </div>
+                <h5 class="card-title">Gestion des Foyers</h5>
+                <p class="card-text text-muted">Administrez les foyers étudiants et leurs capacités</p>
+                <a [routerLink]="['/foyer']" (click)="navigateToPage($event, 'foyer')" class="btn btn-outline-success stretched-link">Accéder</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm transition-all hover-shadow">
+              <div class="card-body text-center py-4">
+                <div class="icon-wrapper bg-danger bg-opacity-10 text-danger rounded-circle p-3 mb-3 mx-auto">
+                  <i class="bi bi-calendar-check fs-3"></i>
+                </div>
+                <h5 class="card-title">Réservations</h5>
+                <p class="card-text text-muted">Consultez et gérez les réservations des étudiants</p>
+                <a [routerLink]="['/reservations']" (click)="navigateToPage($event, 'reservations')" class="btn btn-outline-danger stretched-link">Accéder</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Recent Activity Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2>Activité récente</h2>
+          <a href="#" class="btn btn-sm btn-outline-secondary">Voir tout</a>
+        </div>
+        
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th width="120">Date</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th width="120">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let activity of recentActivities">
+                    <!-- <td>{{ activity.date | date:'shortDate' }}</td> -->
+                    <td>
+                        <span class="badge" [ngClass]="{
+                            'bg-primary': activity.type === 'Bloc',
+                            'bg-success': activity.type === 'Foyer',
+                            'bg-warning': activity.type === 'Chambre',
+                            'bg-info': activity.type === 'Réservation'
+                          }">
+                            {{ activity.type }}
+                          </span>
+                          
+                    </td>
+                    <td>{{ activity.description }}</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary">Voir</button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!recentActivities || recentActivities.length === 0">
+                    <td colspan="4" class="text-center py-4 text-muted">
+                      <i class="bi bi-info-circle me-2"></i>Aucune activité récente
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

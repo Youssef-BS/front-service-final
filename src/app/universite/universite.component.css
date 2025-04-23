@@ -1,0 +1,166 @@
+/* General container styling */
+.container {
+  /* background-color: #f8f9fa; */ /* Light gray background */
+  background: linear-gradient(to bottom right, #e9ecef, #dee2e6); /* Subtle gradient background */
+  border-radius: 12px; /* Slightly more rounded corners */
+  padding-top: 2.5rem !important; /* Increase top padding */
+  padding-bottom: 2.5rem !important; /* Increase bottom padding */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+}
+
+h2, h4 {
+  color: #212529; /* Even darker heading color */
+  text-align: center;
+  margin-bottom: 2rem; /* More space below headings */
+  font-weight: 600; /* Bolder headings */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+/* Card styling */
+.card {
+  border: none; /* Remove default card border */
+  border-left: 5px solid #007bff; /* Accent border on the left */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Add hover effect for shadow too */
+  margin-bottom: 1.5rem !important; /* Consistent spacing */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Base shadow for cards */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lift card slightly on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.card .card-body {
+  padding: 1.5rem; /* Increase padding inside cards */
+}
+
+/* Input field styling */
+.form-control {
+  border-radius: 4px; /* Standard border radius */
+  border: 1px solid #ced4da; /* Standard border */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #80bdff; /* Highlight focus */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25), inset 0 1px 2px rgba(0,0,0,0.075); /* Add subtle inner shadow */
+}
+
+/* Button styling */
+.btn {
+  border-radius: 25px; /* More rounded buttons */
+  padding: 0.6rem 1.5rem; /* Slightly larger padding */
+  font-weight: 600; /* Bolder button text */
+  transition: all 0.2s ease; /* Smooth transitions for all properties */
+  margin-right: 0.75rem; /* More space between buttons */
+  border: none; /* Remove default border for gradient buttons */
+  color: white; /* Ensure text is white on gradient buttons */
+}
+
+.btn:hover {
+  transform: scale(1.05) translateY(-2px); /* Enlarge and lift button slightly on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.btn-info {
+  /* background-color: #17a2b8; */
+  /* border-color: #17a2b8; */
+  background-image: linear-gradient(to right, #17a2b8, #138496);
+}
+
+.btn-info:hover {
+  /* background-color: #138496; */
+  /* border-color: #117a8b; */
+  background-image: linear-gradient(to right, #138496, #117a8b);
+}
+
+.btn-secondary {
+  /* background-color: #6c757d; */
+  /* border-color: #6c757d; */
+  background-image: linear-gradient(to right, #6c757d, #5a6268);
+}
+
+.btn-secondary:hover {
+  /* background-color: #5a6268; */
+  /* border-color: #545b62; */
+  background-image: linear-gradient(to right, #5a6268, #545b62);
+}
+
+.btn-danger {
+  /* background-color: #dc3545; */
+  /* border-color: #dc3545; */
+  background-image: linear-gradient(to right, #dc3545, #c82333);
+}
+
+.btn-danger:hover {
+  /* background-color: #c82333; */
+  /* border-color: #bd2130; */
+  background-image: linear-gradient(to right, #c82333, #bd2130);
+}
+
+.btn-warning {
+  /* background-color: #ffc107; */
+  /* border-color: #ffc107; */
+  background-image: linear-gradient(to right, #ffc107, #e0a800);
+  color: #212529; /* Darker text for better contrast */
+}
+
+.btn-warning:hover {
+  /* background-color: #e0a800; */
+  /* border-color: #d39e00; */
+  background-image: linear-gradient(to right, #e0a800, #d39e00);
+  color: #212529;
+}
+
+.btn-success {
+  /* background-color: #28a745; */
+  /* border-color: #28a745; */
+  background-image: linear-gradient(to right, #28a745, #218838);
+}
+
+.btn-success:hover {
+  /* background-color: #218838; */
+  /* border-color: #1e7e34; */
+  background-image: linear-gradient(to right, #218838, #1e7e34);
+}
+
+.btn-primary {
+  /* background-color: #007bff; */
+  /* border-color: #007bff; */
+  background-image: linear-gradient(to right, #007bff, #0069d9);
+}
+
+.btn-primary:hover {
+  /* background-color: #0069d9; */
+  /* border-color: #0062cc; */
+  background-image: linear-gradient(to right, #0069d9, #0062cc);
+}
+
+/* Specific adjustments */
+.form-row .form-group {
+  margin-bottom: 1rem; /* Ensure consistent spacing in forms */
+}
+
+.card-body.d-flex {
+  align-items: center; /* Vertically align items in the list card body */
+}
+
+.invalid-feedback {
+  font-size: 0.8rem; /* Smaller validation message */
+}
+
+/* Loading spinner */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  color: #007bff; /* Primary color for spinner */
+}
+
+.text-center p {
+  color: #6c757d; /* Muted color for loading text */
+}
+
+/* Alert styling */
+.alert {
+  border-radius: 0.25rem;
+}

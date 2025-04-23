@@ -1,0 +1,179 @@
+<!-- Root Wrapper for Theme -->
+ <p (click)="logout()">decon test</p>
+<div [ngClass]="{ 'bg-dark text-white': isDarkMode }">
+  <!-- Modern UI Container -->
+  <div class="container py-5">
+    <!-- Title + Dark Mode Toggle -->
+    <div class="text-center mb-3">
+      <h1 class="display-4 fw-bold text-primary mb-3">
+        <span class="d-inline-block gradient-text">🏠 Gestion des Foyers</span>
+      </h1>
+
+      <div class="form-check form-switch d-flex justify-content-center align-items-center mt-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="darkModeToggle"
+          [(ngModel)]="isDarkMode"
+          (change)="toggleDarkMode()"
+        />
+        <label class="form-check-label ms-2" for="darkModeToggle"
+          >🌙 Mode Sombre</label
+        >
+      </div>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <!-- Search Bar -->
+      <div class="input-group" style="width: 50%; min-width: 300px;">
+        <span class="input-group-text bg-white border-end-0">🔍</span>
+        <input
+          type="text"
+          class="form-control border-start-0"
+          placeholder="Rechercher un foyer..."
+          [(ngModel)]="searchTerm"
+          (input)="filterFoyers()"
+        />
+      </div>
+
+      <!-- Add Button -->
+      <button
+        class="btn btn-primary px-4 d-flex align-items-center"
+        (click)="showAddFoyerForm = !showAddFoyerForm"
+      >
+        <span class="me-2">➕</span> Nouveau Foyer
+      </button>
+    </div>
+
+    <!-- Add Foyer Form -->
+    <div *ngIf="showAddFoyerForm" class="bg-white bg-opacity-75 rounded-3 p-4 mb-5 shadow">
+      <h4 class="text-center text-success mb-4">🏗️ Ajouter un Foyer</h4>
+      <form (ngSubmit)="addFoyer()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nom du Foyer</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newFoyer.nomFoyer"
+              name="nomFoyer"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Capacité</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="newFoyer.capaciteFoyer"
+              name="capaciteFoyer"
+              required
+            />
+          </div>
+        </div>
+        <div class="text-end mt-4">
+          <button class="btn btn-success me-2 d-flex align-items-center">
+            <span class="me-2">💾</span> Enregistrer
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary d-flex align-items-center"
+            (click)="cancelAdd()"
+          >
+            <span class="me-2">❌</span> Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Foyer Table -->
+    <div class="bg-white bg-opacity-75 rounded-3 overflow-hidden shadow">
+      <table class="table align-middle mb-0">
+        <thead class="text-white bg-primary">
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Capacité</th>
+            <th>Statut</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let foyer of filteredFoyers; let i = index" [ngClass]="{'bg-light': i % 2 === 0}">
+            <td class="fw-bold">{{ i + 1 }}</td>
+            <td>{{ foyer.nomFoyer }}</td>
+            <td>{{ foyer.capaciteFoyer }}</td>
+            <td>
+              <span
+                class="badge px-3 py-2"
+                [ngClass]="foyer.capaciteFoyer > 100 ? 'bg-success' : 'bg-warning text-dark'"
+              >
+                {{
+                  foyer.capaciteFoyer > 100
+                    ? "Grande capacité"
+                    : "Capacité normale"
+                }}
+              </span>
+            </td>
+            <td class="text-center">
+              <button
+                class="btn btn-outline-primary btn-sm me-2 d-flex align-items-center"
+                (click)="editFoyer(foyer)"
+              >
+                <span class="me-1">✏️</span> Modifier
+              </button>
+              <button
+                class="btn btn-outline-danger btn-sm d-flex align-items-center"
+                (click)="deleteFoyer(foyer.idFoyer)"
+              >
+                <span class="me-1">🗑️</span> Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Edit Foyer Form -->
+    <div *ngIf="selectedFoyer" class="bg-white bg-opacity-75 rounded-3 p-4 mt-5 shadow">
+      <h4 class="text-primary text-center mb-4">✏️ Modifier le Foyer</h4>
+      <form (ngSubmit)="updateFoyer()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nom du Foyer</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="selectedFoyer.nomFoyer"
+              name="nomFoyer"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Capacité</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="selectedFoyer.capaciteFoyer"
+              name="capaciteFoyer"
+              required
+            />
+          </div>
+        </div>
+        <div class="text-end mt-4">
+          <button class="btn btn-success me-2 d-flex align-items-center">
+            <span class="me-2">💾</span> Sauvegarder
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary d-flex align-items-center"
+            (click)="cancelEdit()"
+          >
+            <span class="me-2">❌</span> Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

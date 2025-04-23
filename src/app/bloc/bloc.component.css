@@ -1,0 +1,251 @@
+/* General container styling */
+.container {
+  padding-top: 2.5rem; /* Increased padding */
+  padding-bottom: 2.5rem;
+  background-color: #f4f7f6; /* Light background for the whole page */
+}
+
+h2 {
+  color: #0056b3; /* Darker blue for main title */
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+h3 {
+  color: #343a40; /* Dark grey for subtitles */
+  margin-bottom: 1rem; /* Adjusted margin */
+  font-weight: 500;
+}
+
+/* Header section with title and button */
+.bloc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem; /* Increased margin */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6; /* Add a subtle separator */
+}
+
+.bloc-header h2 {
+  margin-bottom: 0; /* Remove bottom margin when in header */
+}
+
+.bloc-header .btn-success {
+  background-color: #28a745; /* Standard success green */
+  border-color: #28a745;
+  transition: background-color 0.2s ease;
+}
+
+.bloc-header .btn-success:hover {
+  background-color: #218838; /* Darker green on hover */
+  border-color: #1e7e34;
+}
+
+
+/* Chart container */
+.chart-container {
+  background-color: #ffffff; /* White background for contrast */
+  padding: 2rem; /* Increased padding */
+  border-radius: 0.6rem; /* Slightly larger radius */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  margin-bottom: 2.5rem; /* Increased margin */
+  text-align: center; /* Center chart title */
+  max-width: 450px; /* Slightly wider */
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #e9ecef; /* Subtle border */
+}
+
+.chart-container h3 {
+  margin-bottom: 1.5rem; /* More space below title */
+  font-size: 1.2rem; /* Larger font size */
+  color: #495057; /* Slightly darker color */
+}
+
+/* Add Bloc form card */
+.add-bloc-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Subtle gradient */
+  padding: 2.5rem; /* Increased padding */
+  border-radius: 0.6rem; /* Slightly larger radius */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  margin-bottom: 2.5rem; /* Increased margin */
+  border: 1px solid #dee2e6; /* Slightly darker border */
+}
+
+.add-bloc-card h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #dee2e6; /* Consistent border color */
+  padding-bottom: 1rem; /* More padding */
+  color: #0056b3; /* Match main title color */
+}
+
+.add-bloc-card .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.add-bloc-card .btn-primary {
+  margin-right: 0.5rem;
+}
+
+/* Filter section styling */
+.filter-section {
+  background-color: #e9ecef; /* Light grey background */
+  padding: 1.5rem 2rem; /* Adjusted padding */
+  border-radius: 0.6rem; /* Consistent radius */
+  margin-bottom: 2.5rem; /* Increased margin */
+  display: flex;
+  gap: 1.5rem; /* Increased gap */
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Inner shadow */
+}
+
+.filter-section label {
+  margin-bottom: 0;
+  font-weight: 600; /* Bolder labels */
+  color: #495057; /* Darker label color */
+}
+
+.filter-section input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.filter-section input:focus {
+  border-color: #007bff; /* Primary blue focus */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.3); /* Slightly stronger shadow */
+}
+
+.filter-section button {
+  padding: 0.5rem 1.2rem; /* Slightly more padding */
+  background-color: #17a2b8; /* Info blue */
+  border-color: #17a2b8;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.filter-section button:hover {
+  background-color: #138496; /* Darker info blue */
+  border-color: #117a8b;
+}
+
+
+/* Table container and styling */
+.table-container {
+  background-color: #ffffff;
+  padding: 0; /* Remove padding, let table handle it */
+  border-radius: 0.6rem; /* Consistent radius */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+  overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.table {
+  margin-bottom: 0; /* Remove default bottom margin */
+  border-collapse: separate; /* Needed for border-radius on table */
+  border-spacing: 0;
+}
+
+.table thead th {
+  background-color: #007bff; /* Primary blue header */
+  color: white; /* White text */
+  border-bottom: none; /* Remove default border */
+  text-transform: uppercase;
+  font-size: 0.9rem; /* Slightly larger font */
+  letter-spacing: 0.05em;
+  padding: 1rem 0.9rem; /* Adjust padding */
+  text-align: left; /* Ensure left alignment */
+}
+
+/* Style first and last header cells for rounded corners */
+.table thead th:first-child {
+  border-top-left-radius: 0.6rem;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 0.6rem;
+}
+
+
+.table tbody tr {
+  border-bottom: 1px solid #e9ecef; /* Lighter row separator */
+  transition: background-color 0.2s ease; /* Smooth hover transition */
+}
+
+.table tbody tr:last-child {
+  border-bottom: none; /* No border for the last row */
+}
+
+.table tbody tr:hover {
+  background-color: #e9f5ff; /* Light blue hover */
+}
+
+.table td, .table th {
+  vertical-align: middle;
+  padding: 1rem 0.9rem; /* Consistent padding */
+}
+
+/* Action buttons in table */
+.table .actions .btn { /* Target buttons within the actions cell */
+  margin-right: 0.6rem; /* Slightly more space */
+  padding: 0.35rem 0.8rem; /* Adjust padding */
+  font-size: 0.88rem; /* Slightly larger font */
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* Add subtle interaction */
+}
+
+.table .actions .btn:hover {
+  transform: translateY(-1px); /* Slight lift on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Add shadow on hover */
+}
+
+
+.table .btn i {
+  margin-right: 0.4rem; /* More space for icon */
+}
+
+/* Specific button styling - using Bootstrap classes where possible */
+.btn-warning {
+  color: #212529; /* Improve contrast */
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 768px) {
+  .bloc-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bloc-header .btn {
+    margin-top: 1rem; /* Add space when button wraps below title */
+  }
+
+  .filter-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-section input,
+  .filter-section button {
+    width: 100%; /* Make filter inputs/button full width */
+  }
+}

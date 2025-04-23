@@ -1,0 +1,74 @@
+<!-- app.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">CampusManager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">
+              <i class="fas fa-home me-1"></i>Accueil
+            </a>
+          </li>
+          
+          <!-- Chambres Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="chambresDropdown" role="button" 
+               data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffc107; font-weight: bold;">
+              <i class="fas fa-bed me-1"></i>Chambres
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5rem;">
+                New
+              </span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="chambresDropdown">
+              <li>
+                <a class="dropdown-item" routerLink="/chambre" routerLinkActive="active">
+                  <i class="fas fa-list me-1"></i>Liste des Chambres
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/chambres-disponibles" routerLinkActive="active">
+                  <i class="fas fa-check-circle me-1" style="color: #28a745;"></i>Chambres Disponibles
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/chambre-map" routerLinkActive="active">
+                  <i class="fas fa-map-marker-alt me-1" style="color: #17a2b8;"></i>Carte des Chambres
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/reservations" routerLinkActive="active">
+              <i class="fas fa-calendar-check me-1"></i>Réservations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/bloc" routerLinkActive="active">
+              <i class="fas fa-building me-1"></i>Blocs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/universite" routerLinkActive="active">
+              <i class="fas fa-university me-1"></i>Universités
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/foyer" routerLinkActive="active">
+              <i class="fas fa-home me-1"></i>Foyers
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Route content -->
+  <div class="container mt-4">
+    <router-outlet></router-outlet>
+  </div>
+  

@@ -1,0 +1,171 @@
+<div class="container py-5">
+  <h2 class="mb-4">Liste des Universités</h2>
+
+  <!-- Alert for errors -->
+  <div *ngIf="hasError" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="hasError = false"></button>
+  </div>
+
+  <!-- Filters -->
+  <div class="card p-4 mb-4 shadow-sm">
+    <div class="form-row align-items-end">
+      <div class="form-group col-md-6">
+        <label for="filterAddress">Filtrer par adresse</label>
+        <input
+          id="filterAddress"
+          type="text"
+          class="form-control"
+          placeholder="Adresse"
+          [(ngModel)]="filterAddress"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <button class="btn btn-info mr-2" (click)="filterUniversites()" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+          Filtrer
+        </button>
+        <button class="btn btn-secondary" (click)="getAllUniversites()" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+          Tout afficher
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+    <p class="mt-2">Chargement des données...</p>
+  </div>
+
+  <!-- Université List -->
+  <div class="mb-4" *ngIf="!isLoading">
+    <div *ngIf="universites.length === 0" class="alert alert-info">
+      Aucune université trouvée
+    </div>
+    <div *ngFor="let u of universites" class="card mb-3 shadow-sm">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-1">{{ u.nomUniversite }}</h5>
+          <p class="mb-1 text-muted">ID: {{ u.idUniversite }}</p>
+          <p class="mb-0">{{ u.adresse }}</p>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-danger mr-2" (click)="deleteUniversite(u.idUniversite)" [disabled]="isLoading">
+            <i class="fas fa-trash"></i> Supprimer
+          </button>
+          <button class="btn btn-sm btn-warning" (click)="selectUniversite(u)" [disabled]="isLoading">
+            <i class="fas fa-edit"></i> Modifier
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Université -->
+  <div class="card p-4 mb-4 shadow-sm">
+    <h4>Ajouter une Université</h4>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Nom</label>
+        <input
+          class="form-control"
+          placeholder="Nom"
+          [(ngModel)]="newUniversite.nomUniversite"
+          [class.is-invalid]="newUniversite.nomUniversite === ''"
+        />
+        <div class="invalid-feedback">
+          Le nom est requis
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Adresse</label>
+        <input
+          class="form-control"
+          placeholder="Adresse"
+          [(ngModel)]="newUniversite.adresse"
+          [class.is-invalid]="newUniversite.adresse === ''"
+        />
+        <div class="invalid-feedback">
+          L'adresse est requise
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success" (click)="createUniversite()" [disabled]="isLoading">
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+      Ajouter
+    </button>
+  </div>
+
+  <!-- Update Université -->
+  <div class="card p-4 mb-4 shadow-sm" *ngIf="selectedUniversite">
+    <h4>Modifier une Université</h4>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Nom</label>
+        <input
+          class="form-control"
+          [(ngModel)]="selectedUniversite.nomUniversite"
+          placeholder="Nom"
+          [class.is-invalid]="selectedUniversite.nomUniversite === ''"
+        />
+        <div class="invalid-feedback">
+          Le nom est requis
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Adresse</label>
+        <input
+          class="form-control"
+          [(ngModel)]="selectedUniversite.adresse"
+          placeholder="Adresse"
+          [class.is-invalid]="selectedUniversite.adresse === ''"
+        />
+        <div class="invalid-feedback">
+          L'adresse est requise
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <button class="btn btn-primary mr-2" (click)="updateUniversite()" [disabled]="isLoading">
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+        Mettre à jour
+      </button>
+      <button class="btn btn-secondary" (click)="selectedUniversite = null">Annuler</button>
+    </div>
+  </div>
+
+  <!-- Search by ID -->
+  <div class="card p-4 mb-4 shadow-sm">
+    <h4>Rechercher une Université par ID</h4>
+    <div class="form-row align-items-end">
+      <div class="form-group col-md-6">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="ID"
+          [(ngModel)]="searchId"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <button class="btn btn-info" (click)="getById()" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+          Rechercher
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="selectedUniversite && !isLoading" class="mt-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedUniversite.nomUniversite }}</h5>
+          <p class="card-text"><strong>ID:</strong> {{ selectedUniversite.idUniversite }}</p>
+          <p class="card-text"><strong>Adresse:</strong> {{ selectedUniversite.adresse }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

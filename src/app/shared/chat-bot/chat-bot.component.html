@@ -1,0 +1,87 @@
+<!-- Chat Button -->
+<div class="chat-button" [ngClass]="{'open': state.isOpen}" (click)="toggleChat()">
+  <i class="fas" [ngClass]="state.isOpen ? 'fa-times' : 'fa-comments'"></i>
+  <span class="notification-badge" *ngIf="!state.isOpen && state.messages.length > 0">{{ state.messages.length }}</span>
+</div>
+
+<!-- Chat Window -->
+<div class="chat-window" [ngClass]="{'open': state.isOpen}">
+  <div class="chat-header">
+    <img src="assets/chatbot-avatar.png" alt="ChatBot" class="avatar" 
+      onerror="this.src='https://cdn-icons-png.flaticon.com/512/4712/4712027.png'">
+    <h3>{{ state.botName }} <span class="small-text">ton ami campus</span></h3>
+    <div class="chat-actions">
+      <button class="btn-clear" (click)="clearChat()" title="Effacer l'historique">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+      <button class="btn-close" (click)="toggleChat()" title="Fermer">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+  
+  <div class="chat-messages">
+    <div class="message" *ngFor="let message of state.messages" 
+      [ngClass]="{
+        'user-message': message.isUser, 
+        'bot-message': !message.isUser,
+        'bot-happy': !message.isUser && message.emotion === 'happy',
+        'bot-sad': !message.isUser && message.emotion === 'sad',
+        'bot-thinking': !message.isUser && message.emotion === 'thinking',
+        'bot-curious': !message.isUser && message.emotion === 'curious',
+        'bot-confused': !message.isUser && message.emotion === 'confused'
+      }">
+      <div *ngIf="!message.isUser" class="bot-avatar">
+        <div class="avatar-img" 
+          [ngClass]="{
+            'avatar-happy': message.emotion === 'happy',
+            'avatar-sad': message.emotion === 'sad',
+            'avatar-thinking': message.emotion === 'thinking',
+            'avatar-curious': message.emotion === 'curious',
+            'avatar-confused': message.emotion === 'confused'
+          }">
+          <!-- Different emojis based on emotion -->
+          <span *ngIf="message.emotion === 'happy'">😊</span>
+          <span *ngIf="message.emotion === 'sad'">😔</span>
+          <span *ngIf="message.emotion === 'thinking'">🤔</span>
+          <span *ngIf="message.emotion === 'curious'">🧐</span>
+          <span *ngIf="message.emotion === 'confused'">😅</span>
+          <span *ngIf="message.emotion === 'neutral' || !message.emotion">🙂</span>
+        </div>
+      </div>
+      <div class="message-content">
+        <div class="message-text" [innerHTML]="message.text | lineBreakTransform"></div>
+        <div class="message-time">{{ message.timestamp | date:'shortTime' }}</div>
+      </div>
+    </div>
+    
+    <!-- Typing indicator when loading -->
+    <div class="message bot-message" *ngIf="state.isLoading">
+      <div class="bot-avatar">
+        <div class="avatar-img avatar-thinking">
+          <span>🤔</span>
+        </div>
+      </div>
+      <div class="message-content">
+        <div class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="chat-input">
+    <input 
+      type="text" 
+      [(ngModel)]="state.userInput" 
+      placeholder="Pose ta question à {{ state.botName }}..."
+      (keyup.enter)="sendMessage()"
+      [disabled]="state.isLoading"
+    >
+    <button (click)="sendMessage()" [disabled]="state.isLoading || !state.userInput.trim()" class="send-button">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div> 

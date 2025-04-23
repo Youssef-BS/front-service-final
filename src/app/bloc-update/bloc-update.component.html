@@ -1,0 +1,34 @@
+<div *ngIf="!isLoading">
+    <h3>Modifier le Bloc</h3>
+    
+    <form (ngSubmit)="updateBloc()">
+      <div class="form-group">
+        <label for="nomBloc">Nom du Bloc</label>
+        <input 
+          [(ngModel)]="bloc.nomBloc" 
+          name="nomBloc" 
+          id="nomBloc" 
+          class="form-control" 
+          placeholder="Nom du Bloc"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="capaciteBloc">Capacité</label>
+        <input 
+          [(ngModel)]="bloc.capaciteBloc" 
+          name="capaciteBloc" 
+          id="capaciteBloc" 
+          class="form-control" 
+          placeholder="Capacité du Bloc"
+          required
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </form>
+  </div>
+
+  <div *ngIf="isLoading">Chargement des données...</div>
+  

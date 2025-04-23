@@ -1,0 +1,116 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">
+        <i class="fas fa-map-marker-alt me-2"></i>Carte des Chambres
+      </h1>
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <p class="text-muted">
+            Visualisez l'emplacement des chambres disponibles sur la carte. Les chambres disponibles sont marquées en vert.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Map Container -->
+      <div class="card shadow-sm">
+        <div class="card-body p-0">
+          <div #mapContainer id="map" style="height: 500px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4">
+      <!-- Selected Chambre Details -->
+      <div class="card shadow-sm mb-4" *ngIf="selectedChambre">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Chambre {{selectedChambre.numeroChambre}}</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3" *ngIf="selectedChambre.image">
+            <img [src]="selectedChambre.image" class="img-fluid rounded mb-2" alt="Chambre image">
+          </div>
+          <div class="mb-3" *ngIf="!selectedChambre.image">
+            <div class="bg-light rounded text-center py-4 mb-2">
+              <i class="fas fa-image fa-3x text-muted"></i>
+              <p class="text-muted mt-2">Pas d'image disponible</p>
+            </div>
+          </div>
+          
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Type
+              <span class="badge rounded-pill" 
+                [ngClass]="{
+                  'bg-primary': selectedChambre.typeC === 'SIMPLE',
+                  'bg-info': selectedChambre.typeC === 'DOUBLE',
+                  'bg-warning': selectedChambre.typeC === 'TRIPLE'
+                }">
+                {{selectedChambre.typeC || 'Non spécifié'}}
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Prix
+              <span class="badge bg-success rounded-pill">{{selectedChambre.prix || 0}} DT</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Évaluation
+              <div>
+                <i class="fas fa-star text-warning"></i>
+                <span>{{selectedChambre.averageRating || 0}}/5 ({{selectedChambre.totalRatings || 0}} avis)</span>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Statut
+              <span class="badge" [ngClass]="{'bg-success': selectedChambre.isAvailable, 'bg-danger': !selectedChambre.isAvailable}">
+                {{selectedChambre.isAvailable ? 'Disponible' : 'Non disponible'}}
+              </span>
+            </li>
+          </ul>
+          
+          <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" *ngIf="selectedChambre.isAvailable">
+              <i class="fas fa-calendar-check me-2"></i>Réserver cette chambre
+            </button>
+            <button class="btn btn-outline-secondary">
+              <i class="fas fa-info-circle me-2"></i>Voir plus de détails
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chambre List -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Liste des chambres</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="list-group list-group-flush">
+            <button *ngFor="let chambre of chambres" 
+                  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                  [class.active]="selectedChambre?.idChambre === chambre.idChambre"
+                  (click)="selectedChambre = chambre">
+              <div>
+                <strong>Chambre {{chambre.numeroChambre}}</strong>
+                <small class="d-block text-muted">{{chambre.typeC || 'Type non spécifié'}}</small>
+              </div>
+              <div>
+                <span class="badge" [ngClass]="{'bg-success': chambre.isAvailable, 'bg-danger': !chambre.isAvailable}">
+                  {{chambre.prix || 0}} DT
+                </span>
+              </div>
+            </button>
+            
+            <div *ngIf="!chambres.length" class="list-group-item text-center py-4">
+              <i class="fas fa-info-circle me-2"></i>Aucune chambre disponible
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

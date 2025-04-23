@@ -1,0 +1,74 @@
+<div class="container my-5">
+
+  <!-- Header Section -->
+  <div class="bloc-header">
+    <h2>Liste des Blocs</h2>
+    <button class="btn btn-success" (click)="toggleAddForm()">
+      <i class="fas fa-plus"></i> Ajouter un bloc
+    </button>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="chart-container mb-4">
+    <h3>Capacité Moyenne des Blocs</h3>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!-- Add Bloc Form Section -->
+  <div *ngIf="isAdding" class="add-bloc-card card p-3 mb-4">
+        <h3>Ajouter un nouveau bloc</h3>
+        <div class="form-group">
+          <label for="newNomBloc">Nom du Bloc:</label>
+          <input [(ngModel)]="newBloc.nomBloc" id="newNomBloc" class="form-control" placeholder="Nom du bloc" />
+        </div>
+        <div class="form-group">
+          <label for="newCapaciteBloc">Capacité:</label>
+          <input [(ngModel)]="newBloc.capaciteBloc" id="newCapaciteBloc" class="form-control" placeholder="Capacité du bloc" type="number" />
+        </div>
+        <button class="btn btn-primary" (click)="addBloc()">Enregistrer</button>
+        <button class="btn btn-secondary" (click)="toggleAddForm()">Annuler</button>
+      </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section mb-4">
+    <label for="nomBloc">Nom du Bloc:</label>
+    <input [(ngModel)]="nomBloc" id="nomBloc" class="form-control form-control-sm" placeholder="Filtrer par nom" />
+
+    <label for="capaciteBloc">Capacité:</label>
+    <input [(ngModel)]="capaciteBloc" id="capaciteBloc" class="form-control form-control-sm" placeholder="Filtrer par capacité" type="number" />
+
+    <button class="btn btn-info btn-sm" (click)="filterBlocs()">
+      <i class="fas fa-filter"></i> Filtrer
+    </button>
+  </div>
+
+  <!-- Table Section -->
+  <div class="table-container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom du Bloc</th>
+            <th scope="col">Capacité</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bloc of blocs">
+            <th scope="row">{{ bloc.idBloc }}</th>
+            <td>{{ bloc.nomBloc }}</td>
+            <td>{{ bloc.capaciteBloc }}</td>
+            <td class="actions">
+              <a [routerLink]="['/update-bloc', bloc.idBloc]" class="btn btn-warning btn-sm">
+                <i class="fas fa-edit"></i> Mettre à jour
+              </a>
+              <button *ngIf="bloc.idBloc !== undefined" (click)="deleteBloc(bloc.idBloc)" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i> Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+</div>

@@ -1,0 +1,238 @@
+/* General Page Styles */
+:host {
+  display: block; /* Ensures the component takes up block space */
+  padding: 2rem 0; /* Add padding top and bottom for the whole component */
+}
+
+.container {
+  max-width: 1200px; /* Limit max width for better readability on large screens */
+}
+
+/* Page Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem; /* Increased spacing */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6; /* Softer border */
+}
+
+.page-header h2 {
+  margin-bottom: 0; /* Remove default margin */
+  border-bottom: none; /* Remove redundant border */
+  color: #007bff; /* Use primary color */
+  font-weight: 600; /* Slightly bolder */
+}
+
+.page-header h2 i {
+  margin-right: 0.75rem; /* Space icon */
+}
+
+.page-header p {
+  margin-bottom: 0;
+  color: #6c757d; /* Standard muted color */
+}
+
+/* Cards (Add/Edit/Filter) */
+.card {
+  border: 1px solid #e9ecef; /* Lighter border */
+  border-radius: 0.5rem; /* Consistent rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  margin-bottom: 2rem; /* Consistent spacing */
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* Subtle hover effect */
+}
+
+.card h3, .card h4 {
+  margin-bottom: 1.5rem; /* Space below card titles */
+  font-weight: 500;
+}
+
+.card h3 i, .card h4 i {
+  margin-right: 0.5rem;
+}
+
+.card.border-success { border-left: 5px solid #28a745; }
+.card.border-warning { border-left: 5px solid #ffc107; }
+.card.shadow-sm { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); } /* Lighter shadow for filter */
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.25rem; /* Consistent spacing */
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #495057;
+  display: block; /* Ensure label takes full width */
+}
+
+.form-control,
+.custom-select, /* Target select elements specifically */
+.custom-file-input {
+  border-radius: 0.3rem; /* Slightly softer radius */
+  border-color: #ced4da;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.custom-select:focus,
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Custom File Input */
+.custom-file-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-color: #ced4da;
+  border-radius: 0.3rem;
+}
+
+.custom-file-input:lang(fr)~.custom-file-label::after { content: "Parcourir"; }
+.custom-file-input:lang(en)~.custom-file-label::after { content: "Browse"; }
+
+/* Image Preview */
+.image-preview img {
+  max-height: 180px; /* Slightly smaller max height */
+  border: 1px solid #dee2e6;
+  padding: 0.25rem;
+  border-radius: 0.3rem;
+  background-color: #fff;
+}
+
+/* Table Styles */
+.table-container { /* Use a wrapper if needed, or apply to .card containing table */
+  border-radius: 0.5rem;
+  overflow: hidden; /* Ensures border-radius clips table corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+}
+
+.table {
+  margin-bottom: 0; /* Remove default margin when inside a container */
+  background-color: #fff;
+}
+
+.table thead {
+  background-color: #f8f9fa; /* Lighter header */
+  color: #495057; /* Darker text for contrast */
+  border-bottom: 2px solid #dee2e6; /* Stronger separator */
+}
+
+.table th {
+  font-weight: 600; /* Bolder headers */
+  padding: 1rem 0.75rem; /* Adjust padding */
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  padding: 0.85rem 0.75rem; /* Consistent padding */
+  border-top-color: #e9ecef; /* Lighter row separators */
+}
+
+.table tbody tr:hover {
+  background-color: #f1f3f5; /* Subtle hover for rows */
+}
+
+.table .img-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  padding: 2px;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.table .img-thumbnail:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.table .text-muted i {
+  font-size: 1.5rem; /* Larger icon for no image */
+  color: #adb5bd;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem; /* Adjust padding for better size */
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent; /* Add base border */
+}
+
+.btn i {
+  margin-right: 0.4rem; /* Space between icon and text */
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific Button Colors (Ensure good contrast) */
+.btn-success { background-color: #28a745; border-color: #28a745; color: white; }
+.btn-success:hover { background-color: #218838; border-color: #1e7e34; }
+
+.btn-warning { background-color: #ffc107; border-color: #ffc107; color: #212529; }
+.btn-warning:hover { background-color: #e0a800; border-color: #d39e00; }
+
+.btn-danger { background-color: #dc3545; border-color: #dc3545; color: white; }
+.btn-danger:hover { background-color: #c82333; border-color: #bd2130; }
+
+.btn-info { background-color: #17a2b8; border-color: #17a2b8; color: white; }
+.btn-info:hover { background-color: #138496; border-color: #117a8b; }
+
+.btn-secondary { background-color: #6c757d; border-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #5a6268; border-color: #545b62; }
+
+.btn-sm {
+  padding: 0.3rem 0.6rem; /* Smaller padding for small buttons */
+  font-size: 0.8rem; /* Smaller font size */
+}
+
+/* Action Buttons in Table */
+td .btn {
+  margin-right: 0.3rem; /* Spacing between action buttons */
+}
+td .btn:last-child {
+  margin-right: 0;
+}
+
+/* Empty Table State */
+.text-center.py-3 {
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Responsive Adjustments (Example) */
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .page-header .text-right {
+    text-align: left !important;
+    margin-top: 1rem;
+  }
+  .filter-section .col-md-2 { /* Adjust filter button alignment on small screens */
+     margin-top: 1rem;
+  }
+  .table thead {
+     /* Consider hiding less important columns on small screens */
+  }
+  .table td, .table th {
+     /* Adjust padding for smaller screens */
+     padding: 0.75rem 0.5rem;
+  }
+}
